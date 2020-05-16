@@ -3,11 +3,37 @@ version: 1.0.0
 description: Wrapper around OSHI java library
 deps:
   jphp-runtime: '*'
+devDeps:
+  dn-bundle-plugin: '*'
 
 plugins:
   - Gradle
-  - Docs
+  - Hub
+  - Doc
 
 gradle:
   deps:
     - 'com.github.oshi:oshi-core:5.0.2'
+
+config:
+  ignore:
+    - /sandbox/**
+    - /.idea/**
+    - /*.iml
+    - /.git/**
+    - /package.hub.yml
+    - /bundle/**
+    - /src-bundle/**
+    - /build
+    - /out/**
+    - /examples/**
+    - /dn-sources/**
+
+develnext-bundle:
+  version: 1.0.0
+  name: OSHI
+  author: MWGuy
+  icon: "develnext/bundle/oshi/icon32.png"
+  description: "Подробная информация о системе"
+  group: "system"
+  class: "develnext\\bundle\\oshi\\OSHIBundle"
