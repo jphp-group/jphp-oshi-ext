@@ -1,0 +1,13 @@
+name: jphp-oshi-ext
+version: 1.0.0
+description: Wrapper around OSHI java library
+deps:
+  jphp-runtime: '*'
+
+plugins:
+  - Gradle
+  - Docs
+
+gradle:
+  deps:
+    - 'com.github.oshi:oshi-core:5.0.2'
