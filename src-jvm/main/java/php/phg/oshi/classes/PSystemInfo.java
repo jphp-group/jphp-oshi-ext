@@ -1,8 +1,9 @@
-package php.phg.hi.classes;
+package php.phg.oshi.classes;
 
 import oshi.PlatformEnum;
 import oshi.SystemInfo;
-import php.phg.hi.OSHIExtension;
+import oshi.software.os.OperatingSystem;
+import php.phg.oshi.OSHIExtension;
 import php.runtime.annotation.Reflection;
 import php.runtime.env.Environment;
 import php.runtime.lang.BaseWrapper;
@@ -34,6 +35,10 @@ public class PSystemInfo extends BaseWrapper<SystemInfo> {
     @Reflection.Signature
     public void __construct() {
         __wrappedObject = new SystemInfo();
+    }
+
+    interface WrappedInterface {
+        OperatingSystem getOperatingSystem();
     }
 
     // TODO: make getOperatingSystem and getHardware functions...

@@ -26,4 +26,11 @@ class SystemInfo
     public function __construct() {
         // Some java code ...
     }
+
+    /**
+     * @return OperatingSystem
+     */
+    public function getOperatingSystem(): OperatingSystem {
+        // Some java code ...
+    }
 }
