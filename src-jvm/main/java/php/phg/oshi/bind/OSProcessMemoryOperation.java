@@ -1,4 +1,4 @@
-package php.phg.oshi.support;
+package php.phg.oshi.bind;
 
 import oshi.software.os.OSProcess;
 import oshi.software.os.linux.LinuxOSProcess;
@@ -28,7 +28,7 @@ public class OSProcessMemoryOperation extends MemoryOperation<OSProcess> {
     @Override
     public OSProcess convert(Environment environment, TraceInfo traceInfo, Memory memory) throws Throwable {
         if (memory.isObject() && memory.instanceOf(POSProcess.class)) {
-            return (OSProcess) memory.toObject(POSProcess.class);
+            return memory.toObject(POSProcess.class).getWrappedObject();
         }
 
         return null;

@@ -1,5 +1,6 @@
 package php.phg.oshi.classes;
 
+import oshi.software.os.FileSystem;
 import oshi.software.os.OSProcess;
 import oshi.software.os.OperatingSystem;
 import php.phg.oshi.OSHIExtension;
@@ -64,6 +65,11 @@ public class POperatingSystem extends BaseWrapper<OperatingSystem> {
     @Reflection.Signature
     public List<OSProcess> getChildProcesses(int parentPid) {
         return getChildProcesses(parentPid, 0);
+    }
+
+    @Reflection.Signature
+    public FileSystem getFileSystem() {
+        return getWrappedObject().getFileSystem();
     }
 
     interface WrapperInterface {

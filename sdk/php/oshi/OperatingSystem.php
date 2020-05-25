@@ -97,4 +97,11 @@ abstract class OperatingSystem
     public function getChildProcesses(int $parentPid, int $limit = 0, string $sort = "NAME"): array {
         return [];
     }
+
+    /**
+     * @return FileSystem
+     */
+    public function getFileSystem(): FileSystem {
+        // Some java code ...
+    }
 }
