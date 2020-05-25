@@ -1,18 +1,21 @@
 package php.phg.oshi.classes;
 
-import oshi.software.os.FileSystem;
-import oshi.software.os.InternetProtocolStats;
-import oshi.software.os.OSProcess;
-import oshi.software.os.OperatingSystem;
+import oshi.software.os.*;
 import php.phg.oshi.OSHIExtension;
+import php.runtime.Memory;
 import php.runtime.annotation.Reflection;
 import php.runtime.env.Environment;
 import php.runtime.lang.BaseWrapper;
+import php.runtime.memory.ArrayMemory;
+import php.runtime.memory.LongMemory;
+import php.runtime.memory.StringMemory;
 import php.runtime.reflection.ClassEntity;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Reflection.Abstract
 @Reflection.Name("OperatingSystem")
@@ -76,6 +79,33 @@ public class POperatingSystem extends BaseWrapper<OperatingSystem> {
     @Reflection.Signature
     public InternetProtocolStats getInternetProtocolStats() {
         return getWrappedObject().getInternetProtocolStats();
+    }
+
+    @Reflection.Signature
+    public List<Map<String, Memory>> getServices() {
+        List<OSService> list = Arrays.asList(getWrappedObject().getServices());
+        return list.stream().map(this::osServiceToMap).collect(Collectors.toList());
+    }
+
+    @Reflection.Signature
+    public Map<String, Memory> getNetworkParams() {
+        NetworkParams networkParams = getWrappedObject().getNetworkParams();
+
+        return new HashMap<String, Memory>() {{
+            put("hostName", new StringMemory(networkParams.getHostName()));
+            put("domainName", new StringMemory(networkParams.getDomainName()));
+            put("ipv4DefaultGateway", new StringMemory(networkParams.getIpv4DefaultGateway()));
+            put("ipv6DefaultGateway", new StringMemory(networkParams.getIpv6DefaultGateway()));
+            put("dnsServers", new ArrayMemory(networkParams.getDnsServers()));
+        }};
+    }
+
+    protected Map<String, Memory> osServiceToMap(OSService service) {
+        return new HashMap<String, Memory>() {{
+            put("name", new StringMemory(service.getName()));
+            put("processID", new LongMemory(service.getProcessID()));
+            put("state", new StringMemory(service.getState().name()));
+        }};
     }
 
     interface WrapperInterface {

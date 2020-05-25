@@ -111,4 +111,18 @@ abstract class OperatingSystem
     public function getInternetProtocolStats(): InternetProtocolStats {
         // Some java code ...
     }
+
+    /**
+     * @return array
+     */
+    public function getNetworkParams(): array {
+        return [];
+    }
+
+    /**
+     * @return array
+     */
+    public function getServices(): array {
+        return [];
+    }
 }
