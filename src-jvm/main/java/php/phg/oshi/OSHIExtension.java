@@ -3,6 +3,7 @@ package php.phg.oshi;
 import oshi.SystemInfo;
 import oshi.software.os.*;
 import php.phg.oshi.bind.FileSystemMemoryOperation;
+import php.phg.oshi.bind.InternetProtocolStatsMemoryOperation;
 import php.phg.oshi.bind.OSFileStoreMemoryOperation;
 import php.phg.oshi.classes.*;
 import php.phg.oshi.bind.OSProcessMemoryOperation;
@@ -24,9 +25,11 @@ public class OSHIExtension extends Extension {
         registerWrapperClass(scope, OSProcess.class, POSProcess.class);
         registerWrapperClass(scope, FileSystem.class, PFileSystem.class);
         registerWrapperClass(scope, OSFileStore.class, POSFileStore.class);
+        registerWrapperClass(scope, InternetProtocolStats.class, PInternetProtocolStats.class);
 
         registerMemoryOperation(OSProcessMemoryOperation.class);
         registerMemoryOperation(FileSystemMemoryOperation.class);
         registerMemoryOperation(OSFileStoreMemoryOperation.class);
+        registerMemoryOperation(InternetProtocolStatsMemoryOperation.class);
     }
 }

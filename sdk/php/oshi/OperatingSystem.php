@@ -104,4 +104,11 @@ abstract class OperatingSystem
     public function getFileSystem(): FileSystem {
         // Some java code ...
     }
+
+    /**
+     * @return InternetProtocolStats
+     */
+    public function getInternetProtocolStats(): InternetProtocolStats {
+        // Some java code ...
+    }
 }

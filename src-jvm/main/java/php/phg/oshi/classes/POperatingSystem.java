@@ -1,6 +1,7 @@
 package php.phg.oshi.classes;
 
 import oshi.software.os.FileSystem;
+import oshi.software.os.InternetProtocolStats;
 import oshi.software.os.OSProcess;
 import oshi.software.os.OperatingSystem;
 import php.phg.oshi.OSHIExtension;
@@ -70,6 +71,11 @@ public class POperatingSystem extends BaseWrapper<OperatingSystem> {
     @Reflection.Signature
     public FileSystem getFileSystem() {
         return getWrappedObject().getFileSystem();
+    }
+
+    @Reflection.Signature
+    public InternetProtocolStats getInternetProtocolStats() {
+        return getWrappedObject().getInternetProtocolStats();
     }
 
     interface WrapperInterface {
